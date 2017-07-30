@@ -1,0 +1,11 @@
+#!/bin/bash
+
+new_dir() {
+  
+  if [ ! -d $1 ]; then
+    mkdir -p $1
+  fi
+
+}
+
+new_dir /home/hu/help.txt
