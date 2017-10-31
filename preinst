@@ -1,5 +1,11 @@
-#!/bin/bash
+#!/bin/sh
+set -e
 
-# stop mboard-electron and mboard-go processes if running
-# configure mboard-go.service
+# add mboard user
+
+if ! getent passwd mboard >/dev/null; then
+  adduser --system --home /home/mboard --shell /bin/bash --group mboard
+fi
+
+exit 0
 

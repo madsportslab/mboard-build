@@ -1,3 +1,21 @@
-#!/bin/sh
+if [ -d /run/systemd/system ]; then
+  systemctl --system daemon-reload >/dev/null || true
+  if ! deb-systemd-invoke is-enabled mboard >/dev/null
+  then
+    deb-systemd-invoke enable mboard >/dev/null || true
+  fi
+  deb-systemd-invoke start mboard >/dev/null || true
+fi
 
-# startup mboard-go, mboard-electron
+# fix file permissions
+
+if id -u mboard > /dev/null 2>&1; then
+  chown -R mboard:mboard /home/mboard
+  chown mboard:mboard /etc/systemd/system/mboard.service
+  chown mboard:mboard /etc/systemd/system/multi-user.target.wants/mboard.service
+fi
+ 
+# migrate sqlite3 database
+
+exit 0
+
