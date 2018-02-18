@@ -1,5 +1,19 @@
-# mboard-pkg
-mboard debian packaging scripts
+# mboard-build
+automates building of the mboard server software
+
+## requirements
+
+* ubuntu x86 or armvl
+* ssh keys are configured for github
+* golang
+* electron binary
+* web assets:  font-awesome, material-components-web
+
+## notes
+
+* build go binaries
+* copy all sources to package directory
+* build debian package
 
 ## package layout
 
