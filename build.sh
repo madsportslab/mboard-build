@@ -23,6 +23,14 @@ log()
   echo [$1]
 }
 
+clean()
+{
+  if [ -d $dst1 ]; then
+    cd $dst1
+    rm -rf *
+  fi
+}
+
 init_dir()
 {
   build_dir $dir1
@@ -194,6 +202,8 @@ fi
 
 # mboard-go compilation
 
+clean
+init_dir
 build_mboard
 build_electron
 build_mboard_electron

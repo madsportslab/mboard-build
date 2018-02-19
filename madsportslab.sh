@@ -14,6 +14,14 @@ log()
   echo [$1]
 }
 
+clean()
+{
+  if [ -d $dst1 ]; then
+    cd $dst1
+    rm -rf *
+  fi
+}
+
 init_dir()
 {
   build_dir $dir1
