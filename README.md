@@ -1,13 +1,20 @@
 # mboard-build
-automates building of the mboard server software
+bash script that automates building of the mboard server packages
 
 ## requirements
 
-* ubuntu x86 or armvl
-* ssh keys are configured for github
-* golang
-* electron binary
-* web assets:  font-awesome, material-components-web
+* ubuntu x86 or arm
+* all repositories are updated (via git pull)
+* golang 1.8+
+* electron binary 1.7.10+
+* node 8.9+
+* web assets:  font-awesome, material-components-web stored to directory $HOME/web
+```
+$HOME/web/material-components-web/material-components-web.min.css
+$HOME/web/material-components-web/material-components-web.min.js
+$HOME/web/font-awesome/font-awesome.min.css"
+```
+* electron binaries `$HOME/electron`
 
 ## notes
 
@@ -31,12 +38,9 @@ automates building of the mboard server software
 
 ## build package
 
-from ./mboard directory
-
-`dpkg-deb —build debian`
-`mv debian.deb mboard-armv7l-0.1.deb`
+`sh build.sh`
 
 ## test package
 
-`deb -i mboard-armv7l-0.1.deb`
+`sudo deb -i mboard.deb`
 
