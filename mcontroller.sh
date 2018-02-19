@@ -109,6 +109,7 @@ fi
 
 # mcontroller compilation
 
+init_dir
 build_mcontroller
 build_systemctl
 build_config

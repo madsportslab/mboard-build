@@ -136,6 +136,7 @@ fi
 
 # madsportslab-service compilation
 
+init_dir
 build_madsportslab_service
 build_migrations
 build_migrate
