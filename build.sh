@@ -1,21 +1,17 @@
 #!/bin/bash
 
 src1="$HOME/work/src/github.com/madsportslab/mboard-go"
-src2="$HOME/src/madsportslab/mboard-electron"
 src3="$HOME/work/src/github.com/madsportslab/mboard-www"
 src4="$src1/debian/etc/systemd/system"
 src5="$src1/debian/home/mboard/.config/autostart"
 src6="$HOME/work/src/github.com/mattes/migrate"
 src7="$HOME/web"
-src8="$HOME/electron"
 dst1="$HOME/build/mboard"
 dir1="$HOME/build/mboard/home/mboard/bin"
-dir2="$HOME/build/mboard/home/mboard/bin/electron"
 dir3="$HOME/build/mboard/etc/systemd/system"
 dir4="$HOME/build/mboard/DEBIAN"
 dir5="$HOME/build/mboard/home/mboard/.config/autostart"
 dir6="$HOME/build/mboard/home/mboard/bin/mboard-www"
-dir7="$HOME/build/mboard/home/mboard/bin/electron/resources"
 dir8="$HOME/build/mboard/home/mboard/data/migrations"
 
 log()
@@ -34,7 +30,6 @@ clean()
 init_dir()
 {
   build_dir $dir1
-  build_dir $dir2
   build_dir $dir3
   build_dir $dir4
   build_dir $dir5
@@ -91,34 +86,6 @@ build_mboard()
 
 }
 
-build_electron()
-{
-  if [ -d $src8 ]; then
-
-    cp -R $src8 $dir1
-    log "Copied electron binaries to $dir1"
-
-  else
-    lerror "Electron binaries not found."
-  fi
-}
-
-build_mboard_electron()
-{
-  if [ -d $src2 ]; then
-
-    cd $src2
-    npm install
-    cd ..
-    asar pack mboard-electron mboard-electron.asar
-    cp mboard-electron.asar $dir7
-    log "Copied mboard-electron.asar to $dir7"
-
-  else
-    lerror "mboard-electron sources not found."
-  fi
-}
-
 build_mboard_www()
 {
   if [ -d $src3 ]; then
@@ -159,7 +126,7 @@ build_systemctl()
 build_autostart()
 {
   cd $src5
-  cp mboard-electron.desktop $dir5
+  cp mboard.desktop $dir5
   log "Copied mboard.desktop to $dir5"
 }
 
@@ -205,8 +172,6 @@ fi
 clean
 init_dir
 build_mboard
-build_electron
-build_mboard_electron
 build_mboard_www
 build_migrations
 build_migrate
