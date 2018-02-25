@@ -50,9 +50,9 @@ go_deps()
   go get "github.com/eknkc/amber"
   go get "github.com/gorilla/websocket"
   go get "github.com/gorilla/mux"
+  go get "github.com/mattes/migrate/cli"
   go get "github.com/mattn/go-sqlite3"
   go get "github.com/skip2/go-qrcode"
-  go get "github.com/mattes/migrate/cli"
 }
 
 lerror()
